@@ -1,0 +1,12 @@
+os: linux
+dist: xenial
+language: golang
+sudo: true
+before_install:
+  - add-apt-repository ppa:masterminds/glide
+  - apt-get update
+  - apt-get install -y glide
+install:
+  - glide install
+script:
+  - make test
