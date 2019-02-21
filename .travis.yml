@@ -12,6 +12,7 @@ script:
 - docker exec -w $WORKDIR test make test
 deploy:
   provider: script
+  skip_cleanup: true
   script: make docker-push
   on:
     branch: master
