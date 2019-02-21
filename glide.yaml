@@ -1,0 +1,30 @@
+package: github.com/flexshopper/newrelic-custom-metrics
+import:
+- package: github.com/emicklei/go-restful
+- package: github.com/golang/glog
+- package: github.com/kubernetes-incubator/custom-metrics-apiserver
+  subpackages:
+  - pkg/cmd
+  - pkg/provider
+  - pkg/provider/helpers
+  - test-adapter/provider
+- package: k8s.io/apimachinery
+  subpackages:
+  - pkg/api/errors
+  - pkg/api/meta
+  - pkg/api/resource
+  - pkg/apis/meta/v1
+  - pkg/labels
+  - pkg/runtime/schema
+  - pkg/types
+  - pkg/util/wait
+- package: k8s.io/apiserver
+  subpackages:
+  - pkg/util/logs
+- package: k8s.io/client-go
+  subpackages:
+  - dynamic
+- package: k8s.io/metrics
+  subpackages:
+  - pkg/apis/custom_metrics
+  - pkg/apis/external_metrics
