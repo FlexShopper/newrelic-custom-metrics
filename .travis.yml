@@ -1,12 +1,17 @@
 os: linux
 dist: xenial
-language: golang
-sudo: true
-before_install:
-  - add-apt-repository ppa:masterminds/glide
-  - apt-get update
-  - apt-get install -y glide
-install:
-  - glide install
+language: go
+services:
+- docker
 script:
-  - make test
+- export WORKDIR=/go/src/github.com/flexshopper/newrelic-custom-metrics
+- docker run -e GOPATH=/go -v $(pwd):$WORKDIR -t -d --name test ubuntu:bionic cat
+- docker exec test apt-get update
+- docker exec test apt-get install -y golang-glide golang-go mercurial git
+- docker exec -w $WORKDIR test glide install -v
+- docker exec -w $WORKDIR test make test
+deploy:
+  provider: script
+  script: make docker-push
+  on:
+    branch: master

@@ -1,4 +1,4 @@
-FROM ubuntu as build
+FROM ubuntu:bionic as build
 
 ENV GOPATH /go
 
@@ -13,7 +13,7 @@ RUN cd $GOPATH/src/github.com/flexshopper/newrelic-custom-metrics \
     && echo "Building adapter..." \
     && CGO_ENABLED=0 GOARCH=amd64 go build -o /tmp/adapter .
 
-FROM ubuntu
+FROM ubuntu:bionic
 
 RUN apt-get update && apt-get install -y ca-certificates
 
