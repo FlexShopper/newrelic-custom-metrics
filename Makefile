@@ -2,9 +2,10 @@ REGISTRY?=mrferos
 IMAGE?=newrelic-custom-metrics
 VERSION?=latest
 
-all: docker-push
+install:
+	glide install -v
 
-test:
+test: install
 	go test -v ./...
 
 docker-build: test
